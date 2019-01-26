@@ -23,11 +23,11 @@
 using namespace std;
 
 struct numInfo{
-    string origin;
-    int numSize;
+    int origin;
 
     bool operator<(const struct numInfo& rhs) const{
-        return (origin + rhs.origin) > (rhs.origin + origin);
+        string a = to_string(origin), b = to_string(rhs.origin);
+        return (a+b) > (b+a);
     }
 };
 
@@ -42,8 +42,7 @@ int main() {
         cin >> input;
 
         struct numInfo _info;
-        _info.origin = to_string(input);
-        _info.numSize = _info.origin.length();
+        _info.origin = input;
         nums.push_back(_info);
         
         if(maxNum < input) maxNum = input;
@@ -51,15 +50,14 @@ int main() {
 
     for(int i = 0; i < N-K; i++) {
         struct numInfo _info;
-        _info.origin = to_string(maxNum);
-        _info.numSize = _info.origin.length();
+        _info.origin = maxNum;
         nums.push_back(_info);
     }
 
     sort(nums.begin(), nums.end());
 
     for(int i = 0; i < nums.size(); i++) {
-        cout << nums[i].origin;
+        cout << to_string(nums[i].origin);
     }
     cout << endl;
 
